@@ -1,0 +1,28 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    /* top: 0px; */
+    
+    /* width: 100%; */
+    background: rgb(243, 243, 243);
+    padding: 14px 0px;
+    
+
+}
+.left{
+    display: flex;
+    gap: 1.5rem;
+    margin-left: 15%;
+}
+.right{
+    display: flex;
+    margin-right: 20%;
+}
+.fix{
+    width: 100%;
+    z-index: 0;
+    position: fixed;
+}
