@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
 import News from "../news/news"
 import { Box } from "@chakra-ui/react";
+import { apikey } from "../apikey";
 const Foryou = () => {
   const [data, setData] = useState([]);
 
-//   useEffect(() => {
-//     fetch(
-//       "https://newsdata.io/api/1/news?apikey=pub_108413c299b29f4ce175d91e4fd2313976088&country=in"
-//     )
-//       .then((res) => res.json())
-//       .then((res) => setData(res.results))
-//       .catch((err) => console.log(err));
-//   }, []);
-    
+  useEffect(() => {
+    fetch(
+      `https://newsdata.io/api/1/news?apikey=${apikey}&country=in`
+    )
+      .then((res) => res.json())
+      .then((res) => setData(res.results))
+      .catch((err) => console.log(err));
+  }, []);
+    console.log(data);
     return (
-        <Box width='540px'  height='100vh' ml='35%' mt='5%'  >
+        <Box width='540px'  height='100vh' ml='35%' mt='4%'  >
             {
-                data.map((ele) => { 
-                    <News { ...ele } />
+                data.map((item) => {
+                    return (
+                        <News key={item.title} {...item} />
+                    )
                 })
             }
-            <News/>
+            <News></News>
       </Box>
     );
 };

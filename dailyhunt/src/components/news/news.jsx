@@ -8,33 +8,47 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import { PhoneIcon, AddIcon, CheckCircleIcon } from "@chakra-ui/icons";
+import {optional} from './content'
 
-
-const News = (props) => {
-    console.log(props);
+const News = ({
+  source_id,
+  image_url,
+  title,
+  description,
+  content,
+  pubDate,
+}) => {
   return (
-    <Box padding="5">
+    <Box padding="5" mb="7">
       <Box display="flex" flexDirection="column" gap="3">
         <Text display="flex" gap="1" alignItems="center">
-          {/* {source_id} */}
+          {source_id || "Indian Express"}
           <CheckCircleIcon w="3" color="#58b6f1" />
         </Text>
-        <Image
+              <Image
+                  width='100%'
+                  height='290'
+          border="1px"
+          borderColor="gray.200"
           borderRadius="md"
-          src="https://assets-news-bcdn.dailyhunt.in/cmd/resize/770x433_90/fetchdata16/images/d6/88/c7/d688c7f1fd41984c3d276816b0d9f075f43a7b39faaa416af033a5af48c65c03.webp"
+          src={
+            image_url ||
+            "https://www.financialexpress.com/wp-content/uploads/2022/04/Dailyhunt-logo-startuptalky.jpg"
+          }
         ></Image>
         <Text fontSize="22" lineHeight="36px" fontWeight="400">
-          Adani Enterprises to enter NSE's Nifty 50 league on September 30
+          {title}
         </Text>
 
         <Flex alignItems="center" justifyContent="space-between">
-          <Text>16 hr - 365 shares</Text>
+          <Text>{pubDate}</Text>
           <Flex alignItems="center" justifyContent="space-between">
             <Image src="https://m.dailyhunt.in/assets/img/desktop/share_whtsapp.svg?mode=pwa&ver=2.0.39"></Image>
             <Image src="https://m.dailyhunt.in/assets/img/desktop/share_fb.svg?mode=pwa&ver=2.0.39"></Image>
             <Image src="https://m.dailyhunt.in/assets/img/desktop/share_tweet.svg?mode=pwa&ver=2.0.39"></Image>
           </Flex>
         </Flex>
+        <Text lineHeight="32px">{description}...</Text>
         <Accordion allowMultiple>
           <AccordionItem paddingTop="3" pb="3">
             <h2>
@@ -46,21 +60,19 @@ const News = (props) => {
                 borderRadius="full"
               >
                 Read More
-                {/* <Box flex="1" textAlign="left">
-                  Section 1 title
-                </Box> */}
                 <AccordionIcon />
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              <Text>
+                {content}
+                {optional}
+              </Text>
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
       </Box>
+      <hr />
     </Box>
   );
 };

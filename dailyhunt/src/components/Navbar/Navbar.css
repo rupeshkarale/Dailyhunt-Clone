@@ -19,7 +19,11 @@
 }
 .right{
     display: flex;
+    gap: 6px;
     margin-right: 20%;
+}
+.right>img{
+    cursor: pointer;
 }
 .fix{
     width: 100%;

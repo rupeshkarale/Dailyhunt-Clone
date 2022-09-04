@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useRef,useNa} from "react";
 import {
   Menu,
   MenuButton,
@@ -11,11 +11,26 @@ import {
   Image,
   Button,
   Box,
+  Stack,
+  InputGroup,
+  InputLeftElement,
+  Input,
 } from "@chakra-ui/react";
-import { ChevronDownIcon, TriangleDownIcon } from "@chakra-ui/icons";
+import {
+  ChevronDownIcon,
+  TriangleDownIcon,
+  SearchIcon,
+} from "@chakra-ui/icons";
 import "./Navbar.css";
+import { Navigate } from "react-router-dom";
 
 const Navbar = () => {
+
+  const value = useRef();
+  function getInput() {
+    <Navigate to="/${value.current.value}" />;
+    console.log(value.current.value)
+  }
   return (
     <div className="fix">
       <div className="navbar">
@@ -57,19 +72,31 @@ const Navbar = () => {
             </MenuList>
           </Menu>
         </div>
+        <Stack  w="30%" ml="-15" spacing={4}>
+          <InputGroup>
+            <InputLeftElement
+              pointerEvents="none"
+              children={<SearchIcon color="gray.400" />}
+            />
+            <Input
+              borderColor="gray.400"
+              type="search"
+              placeholder="Search News"
+              ref={value}
+            />
+            <Button variant='outline' onClick={getInput} ml='2' borderColor='gray.400' size='md' color='gray.400'>Search</Button>
+          </InputGroup>
+        </Stack>
         <div className="right">
-          <a href="https://m.dailyhunt.in/assets/img/desktop/header_notify_icn.svg?mode=pwa&ver=2.0.39">
-            <img
-              src="https://m.dailyhunt.in/assets/img/desktop/header_notify_icn.svg?mode=pwa&ver=2.0.39"
-              alt=""
-            />
-          </a>
-          <a href="">
-            <img
-              src="https://m.dailyhunt.in/assets/img/desktop/header_lang_icn.svg?mode=pwa&ver=2.0.39"
-              alt=""
-            />
-          </a>
+          <img
+            src="https://m.dailyhunt.in/assets/img/desktop/header_notify_icn.svg?mode=pwa&ver=2.0.39"
+            alt=""
+          />
+
+          <img
+            src="https://m.dailyhunt.in/assets/img/desktop/header_lang_icn.svg?mode=pwa&ver=2.0.39"
+            alt=""
+          />
         </div>
       </div>
     </div>
