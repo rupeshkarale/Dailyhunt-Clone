@@ -1,5 +1,15 @@
 import React from "react";
-import { Box, Image, Text, Flex, Avatar, Button, GridItem } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/react";
+import { add, remove } from "../../redux/action";
+import {
+  Box,
+  Image,
+  Text,
+  Flex,
+  Avatar,
+  Button,
+  GridItem,
+} from "@chakra-ui/react";
 import {
   Accordion,
   AccordionItem,
@@ -7,8 +17,15 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import { PhoneIcon, AddIcon, CheckCircleIcon } from "@chakra-ui/icons";
-import {optional} from './content'
+import {
+  PhoneIcon,
+  AddIcon,
+  CheckCircleIcon,
+  StarIcon,
+} from "@chakra-ui/icons";
+import { optional } from "./content";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const News = ({
   source_id,
@@ -18,16 +35,50 @@ const News = ({
   content,
   pubDate,
 }) => {
+  const newdata = useSelector((state) => state.data);
+  console.log(newdata);
+  const dispach = useDispatch();
+  const payload = {
+    source_id,
+    image_url,
+    title,
+    description,
+    content,
+    pubDate,
+  };
+  const addToSave = () => {
+    console.log("work");
+    dispach(add(payload));
+  };
+  const removeTo = () => {
+    dispach(remove(title));
+  };
+  console.log(newdata)
+  let { news } = useParams();
+
   return (
     <Box padding="5" mb="7">
       <Box display="flex" flexDirection="column" gap="3">
-        <Text display="flex" gap="1" alignItems="center">
-          {source_id || "Indian Express"}
-          <CheckCircleIcon w="3" color="#58b6f1" />
-        </Text>
-              <Image
-                  width='100%'
-                  height='290'
+        <Box display="flex" justifyContent="space-between">
+          <Text display="flex" gap="1" alignItems="center">
+            {source_id || "Indian Express"}
+            <CheckCircleIcon w="3" color="#58b6f1" />
+          </Text>
+          <Button
+            onClick={news == "save" ? removeTo : addToSave}
+            rightIcon={<StarIcon size="sm" />}
+            colorScheme="blue"
+            variant="solid"
+            size="xs"
+            borderRadius="full"
+          >
+            {news == "save" ? "Remove" : "Save"}
+          </Button>
+        </Box>
+
+        <Image
+          width="100%"
+          height="290"
           border="1px"
           borderColor="gray.200"
           borderRadius="md"
@@ -48,7 +99,9 @@ const News = ({
             <Image src="https://m.dailyhunt.in/assets/img/desktop/share_tweet.svg?mode=pwa&ver=2.0.39"></Image>
           </Flex>
         </Flex>
-        <Text lineHeight="32px">{description}...</Text>
+        <Text overflow="hidden" height="24" lineHeight="32px">
+          {description}...
+        </Text>
         <Accordion allowMultiple>
           <AccordionItem paddingTop="3" pb="3">
             <h2>
