@@ -12,7 +12,7 @@ const Manynews = () => {
 
   const [category, setcategory] = useState();
   let { news } = useParams();
-console.log(newdata);
+console.log(news)
   useEffect(() => {
     if (news[0] == "@") {
       news = news.substring(1);
@@ -50,7 +50,7 @@ console.log(newdata);
         .catch((err) => console.log(err));
     }
   }, [news,newdata]);
-  console.log(data.length);
+
   return (
     <Box width="540px" height="100vh" ml="35%" mt="5%">
       {data.length == 0 ? (

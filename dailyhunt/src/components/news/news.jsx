@@ -47,15 +47,14 @@ const News = ({
     pubDate,
   };
   const addToSave = () => {
-    console.log("work");
     dispach(add(payload));
   };
   const removeTo = () => {
     dispach(remove(title));
   };
-  console.log(newdata)
+  
   let { news } = useParams();
-
+console.log(news);
   return (
     <Box padding="5" mb="7">
       <Box display="flex" flexDirection="column" gap="3">
