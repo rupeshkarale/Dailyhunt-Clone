@@ -1,13 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
-import { Image, Box, Avatar, Text, Divider } from "@chakra-ui/react";
+import {
+  Image,
+  Box,
+  Avatar,
+  Text,
+  Divider,
+  Button,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { HamburgerIcon } from "@chakra-ui/icons";
 
 const Sidebar = () => {
+  const [showSideBar, setshowSideBar] = useState(false);
+  const isMobileView = useBreakpointValue({ base: true, md: false });
   return (
-    <div className="sticky">
-      <div className="sidebar">
-        <Box display="flex" flexDirection="column" mt="5" gap="3">
+    <Box
+      position={["absolute", "fixed"]}
+      left={["0.5", "15%"]}
+      top={["16", "8%"]}
+    >
+      {isMobileView && (
+        <Button
+          colorScheme="blackAlpha"
+          variant="outline"
+          outlineColor="ButtonFace"
+          onClick={() => setshowSideBar((show) => !show)}
+          leftIcon={<HamburgerIcon />}
+          size="sm"
+          p="4"
+          fontSize="xs"
+          borderRadius="xl"
+          w="36"
+          fontWeight="bold"
+          shadow="lg"
+          display="flex"
+          justifyContent="flex-start"
+          alignItems="center"
+          iconSpacing="5"
+        >
+          More News
+        </Button>
+      )}
+      <Box
+        display={showSideBar || !isMobileView ? "block" : "none"}
+        bg={["ButtonFace", "none"]}
+        w={["100%", "260px"]}
+        justifyContent="space-between"
+      >
+        <Box
+          display="flex"
+          flexDirection="column"
+          mt={["0px", "5"]}
+          gap="3"
+          p={["4", "0px"]}
+        >
           <Link to="/">
             <Box
               display="flex"
@@ -119,10 +167,9 @@ const Sidebar = () => {
               <Text fontSize="17">Business</Text>
             </Box>
           </Link>
-          
         </Box>
         <Box
-          display="flex"
+          display={["none", "flex"]}
           gap="3"
           mt="10"
           mb="77"
@@ -142,7 +189,7 @@ const Sidebar = () => {
         </Box>
         <Box>
           <Divider />
-          <Box display="flex" gap="2" pt="5" pb="5" width="100%">
+          <Box display={["none", "flex"]} gap="1" pt="20" pb="0" width="100%">
             <a
               target="_blank"
               href="https://play.google.com/store/apps/details?id=com.eterno&hl=en_IN"
@@ -159,17 +206,9 @@ const Sidebar = () => {
             </a>
           </Box>
           <Divider />
-          <Box display="flex" gap="9" mt="9">
-            <Text fontSize="12" color="rgb(113, 117, 118)">
-              About us
-            </Text>
-            <Text fontSize="12" color="rgb(113, 117, 118)">
-              Help
-            </Text>
-          </Box>
         </Box>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

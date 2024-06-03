@@ -1,15 +1,6 @@
 import React from "react";
-import { Icon } from "@chakra-ui/react";
 import { add, remove } from "../../redux/action";
-import {
-  Box,
-  Image,
-  Text,
-  Flex,
-  Avatar,
-  Button,
-  GridItem,
-} from "@chakra-ui/react";
+import { Box, Image, Text, Flex, Button } from "@chakra-ui/react";
 import {
   Accordion,
   AccordionItem,
@@ -17,12 +8,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import {
-  PhoneIcon,
-  AddIcon,
-  CheckCircleIcon,
-  StarIcon,
-} from "@chakra-ui/icons";
+import { CheckCircleIcon, StarIcon } from "@chakra-ui/icons";
 import { optional } from "./content";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -35,8 +21,6 @@ const News = ({
   content,
   pubDate,
 }) => {
-  const newdata = useSelector((state) => state.data);
-  console.log(newdata);
   const dispach = useDispatch();
   const payload = {
     source_id,
@@ -52,11 +36,15 @@ const News = ({
   const removeTo = () => {
     dispach(remove(title));
   };
-  
+
   let { news } = useParams();
-console.log(news);
   return (
-    <Box padding="5" mb="7">
+    <Box
+      padding="5"
+      mb={["10", "7"]}
+      shadow={("revert-layer", "2xl")}
+      rounded="base"
+    >
       <Box display="flex" flexDirection="column" gap="3">
         <Box display="flex" justifyContent="space-between">
           <Text display="flex" gap="1" alignItems="center">
@@ -74,19 +62,23 @@ console.log(news);
             {news == "save" ? "Remove" : "Save"}
           </Button>
         </Box>
-
         <Image
           width="100%"
-          height="290"
+          height={["200", "290"]}
           border="1px"
           borderColor="gray.200"
           borderRadius="md"
+          shadow={"md"}
           src={
             image_url ||
             "https://www.financialexpress.com/wp-content/uploads/2022/04/Dailyhunt-logo-startuptalky.jpg"
           }
         ></Image>
-        <Text fontSize="22" lineHeight="36px" fontWeight="400">
+        <Text
+          fontSize={["lg", "22"]}
+          lineHeight={["short", "36px"]}
+          fontWeight="500"
+        >
           {title}
         </Text>
 
@@ -98,25 +90,31 @@ console.log(news);
             <Image src="https://m.dailyhunt.in/assets/img/desktop/share_tweet.svg?mode=pwa&ver=2.0.39"></Image>
           </Flex>
         </Flex>
-        <Text overflow="hidden" height="24" lineHeight="32px">
+        <Text
+          overflow="hidden"
+          height="24"
+          fontSize={["md", "md"]}
+          lineHeight={["base", "32px"]}
+        >
           {description}...
         </Text>
         <Accordion allowMultiple>
           <AccordionItem paddingTop="3" pb="3">
-            <h2>
-              <AccordionButton
-                textColor="whatsapp.100"
-                width="28%"
-                m="auto"
-                bg="rgb(31, 158, 225)"
-                borderRadius="full"
-              >
-                Read More
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
+            {/* <h2> */}
+            <AccordionButton
+              textColor="whatsapp.100"
+              width={["37%", "28%"]}
+              m="auto"
+              bg="rgb(31, 158, 225)"
+              borderRadius="full"
+              fontSize={["sm", "md"]}
+            >
+              Read More
+              <AccordionIcon />
+            </AccordionButton>
+            {/* </h2> */}
             <AccordionPanel pb={4}>
-              <Text>
+              <Text fontSize={["sm", "lg"]}>
                 {content}
                 {optional}
               </Text>

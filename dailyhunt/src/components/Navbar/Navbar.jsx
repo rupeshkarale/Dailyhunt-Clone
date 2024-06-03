@@ -1,43 +1,39 @@
-import React,{useRef} from "react";
+import React, { useRef } from "react";
 import {
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
   Image,
   Button,
   Box,
   Stack,
   InputGroup,
-  InputLeftElement,
   Input,
 } from "@chakra-ui/react";
-import {
-  ChevronDownIcon,
-  TriangleDownIcon,
-  SearchIcon,StarIcon
-} from "@chakra-ui/icons";
+import { TriangleDownIcon, SearchIcon, StarIcon } from "@chakra-ui/icons";
 import "./Navbar.css";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Navbar = () => {
   const Navigate = useNavigate();
   const value = useRef();
   function getInput() {
- Navigate(`/@${value.current.value}`);
-    
+    Navigate(`/@${value.current.value}`);
   }
   return (
     <div className="fix">
       <div className="navbar">
-        <div className="left">
-          <img
+        <Box
+          display={"flex"}
+          alignItems="center"
+          justifyContent={"space-between"}
+          ml={["0", "15%"]}
+        >
+          <Image
             src="https://m.dailyhunt.in/assets/img/desktop/logo.svg?mode=pwa&ver=2.0.39"
             alt=""
+            w={["24", "fit-content"]}
           />
           <Menu>
             <MenuButton
@@ -45,6 +41,7 @@ const Navbar = () => {
               fontSize={16}
               as={Button}
               rightIcon={<TriangleDownIcon p={0} ml={-1} w={3} h="3" />}
+              display={["none", "inline-flex"]}
             >
               News
             </MenuButton>
@@ -71,43 +68,41 @@ const Navbar = () => {
               </MenuItem>
             </MenuList>
           </Menu>
-        </div>
-        <Stack w="30%" ml="-15" spacing={4}>
-          <InputGroup>
-            <InputLeftElement
-              pointerEvents="none"
-              children={<SearchIcon color="gray.400" />}
-            />
+        </Box>
+        <Stack w={["50%", "20%"]} ml={["0px", "6"]} spacing={4}>
+          <InputGroup display={"flex"} alignItems={"center"}>
             <Input
               borderColor="gray.400"
               type="search"
-              placeholder="Search News"
+              placeholder={["Search"]}
               ref={value}
+              h={["8", ""]}
             />
             <Button
               variant="outline"
               onClick={getInput}
               ml="2"
               borderColor="gray.400"
-              size="md"
+              size={["sm", "sm"]}
               color="gray.400"
             >
-              Search
+              <SearchIcon color="gray.400" h={["8", "4"]} />
             </Button>
           </InputGroup>
         </Stack>
         <Link to="/save">
           <Button
-            rightIcon={<StarIcon size="sm" />}
+            rightIcon={<StarIcon size={["xs", "sm"]} />}
             variant="solid"
-            size="md"
-            borderRadius="md"
+            size={["xs", "md"]}
+            borderRadius={["base", "md"]}
             colorScheme="blue"
+            padding={"4"}
           >
-            Saved News
+            Saved
           </Button>
         </Link>
-        <div className="right">
+        <Box w={["0px", "20"]} display={["none", "flex"]} className="right">
           <img
             src="https://m.dailyhunt.in/assets/img/desktop/header_notify_icn.svg?mode=pwa&ver=2.0.39"
             alt=""
@@ -117,7 +112,7 @@ const Navbar = () => {
             src="https://m.dailyhunt.in/assets/img/desktop/header_lang_icn.svg?mode=pwa&ver=2.0.39"
             alt=""
           />
-        </div>
+        </Box>
       </div>
     </div>
   );

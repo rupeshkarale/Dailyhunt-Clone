@@ -1,32 +1,30 @@
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: auto;
-    width: 100%;
-    /* top: 0px; */
-    
-    /* width: 100%; */
-    background: rgb(243, 243, 243);
-    padding: 14px 0px;
-    
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  /* top: 0px; */
 
+  /* width: 100%; */
+  background: rgb(243, 243, 243);
+  padding: 14px 10px;
 }
-.left{
-    display: flex;
-    gap: 1.5rem;
-    margin-left: 15%;
+.left {
+  display: flex;
+  gap: 1.5rem;
+  margin-left: 15%;
 }
-.right{
-    display: flex;
-    gap: 6px;
-    margin-right: 20%;
+.right {
+  display: flex;
+  gap: 6px;
+  margin-right: 20%;
 }
-.right>img{
-    cursor: pointer;
+.right > img {
+  cursor: pointer;
 }
-.fix{
-    width: 100%;
-    z-index: 10;
-    position: fixed;
+.fix {
+  width: 100%;
+  z-index: 10;
+  position: fixed;
 }
