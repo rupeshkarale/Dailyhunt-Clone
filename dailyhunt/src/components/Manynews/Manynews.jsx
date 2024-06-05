@@ -61,9 +61,7 @@ const Manynews = () => {
           p="5rem 5rem"
           color={"gray"}
           mt="5%"
-          fontFamily="fantasy"
-          fontStyle={"oblique"}
-          fontWeight="hairline"
+          fontFamily="monospace"
           rounded={"3xl"}
         >
           No saved news yet
