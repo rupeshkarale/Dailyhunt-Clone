@@ -28,20 +28,19 @@ const Sidebar = () => {
         <Button
           colorScheme="blackAlpha"
           variant="outline"
-          outlineColor="ButtonFace"
           onClick={handleSideBarView}
           leftIcon={<HamburgerIcon />}
-          size="sm"
-          p="4"
+          size="xs"
+          p="2"
           fontSize="xs"
-          borderRadius="xl"
-          w="36"
-          fontWeight="bold"
-          shadow="lg"
+          borderRadius="base"
+          w="29"
+          fontFamily="body"
+          fontWeight="normal"
           display="flex"
           justifyContent="flex-start"
           alignItems="center"
-          iconSpacing="5"
+          iconSpacing="2"
         >
           More News
         </Button>

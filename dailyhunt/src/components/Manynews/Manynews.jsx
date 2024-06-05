@@ -52,7 +52,7 @@ const Manynews = () => {
       width={["100%", "540px"]}
       height="100vh"
       ml={["0%", "35%"]}
-      mt="16"
+      mt="20"
       p={"4"}
     >
       {data.length == 0 ? (
