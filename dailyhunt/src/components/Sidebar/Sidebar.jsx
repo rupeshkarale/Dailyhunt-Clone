@@ -15,6 +15,9 @@ import { HamburgerIcon } from "@chakra-ui/icons";
 const Sidebar = () => {
   const [showSideBar, setshowSideBar] = useState(false);
   const isMobileView = useBreakpointValue({ base: true, md: false });
+  const handleSideBarView = () => {
+    setshowSideBar((show) => !show);
+  };
   return (
     <Box
       position={["absolute", "fixed"]}
@@ -26,7 +29,7 @@ const Sidebar = () => {
           colorScheme="blackAlpha"
           variant="outline"
           outlineColor="ButtonFace"
-          onClick={() => setshowSideBar((show) => !show)}
+          onClick={handleSideBarView}
           leftIcon={<HamburgerIcon />}
           size="sm"
           p="4"
@@ -56,7 +59,7 @@ const Sidebar = () => {
           gap="3"
           p={["4", "0px"]}
         >
-          <Link to="/">
+          <Link to="/" onClick={handleSideBarView}>
             <Box
               display="flex"
               width="100%"
@@ -68,7 +71,7 @@ const Sidebar = () => {
               <Text fontSize="17">For You</Text>
             </Box>
           </Link>
-          <Link to="/cricket">
+          <Link to="/cricket" onClick={handleSideBarView}>
             <Box
               display="flex"
               width="100%"
@@ -80,7 +83,7 @@ const Sidebar = () => {
               <Text fontSize="17">Cricket</Text>
             </Box>
           </Link>
-          <Link to="/science">
+          <Link to="/science" onClick={handleSideBarView}>
             <Box
               display="flex"
               width="100%"
@@ -95,7 +98,7 @@ const Sidebar = () => {
               <Text fontSize="17">Science</Text>
             </Box>
           </Link>
-          <Link to="/technology">
+          <Link to="/technology" onClick={handleSideBarView}>
             <Box
               display="flex"
               width="100%"
@@ -107,7 +110,7 @@ const Sidebar = () => {
               <Text fontSize="17">Daily Share</Text>
             </Box>
           </Link>
-          <Link to="/India">
+          <Link to="/India" onClick={handleSideBarView}>
             <Box
               display="flex"
               width="100%"
@@ -122,7 +125,7 @@ const Sidebar = () => {
               <Text fontSize="17">India</Text>
             </Box>
           </Link>
-          <Link to="/Entertainment">
+          <Link to="/Entertainment" onClick={handleSideBarView}>
             <Box
               display="flex"
               width="100%"
@@ -137,7 +140,7 @@ const Sidebar = () => {
               <Text fontSize="17">Entertainment</Text>
             </Box>
           </Link>
-          <Link to="/Health">
+          <Link to="/Health" onClick={handleSideBarView}>
             <Box
               display="flex"
               width="100%"
@@ -152,7 +155,7 @@ const Sidebar = () => {
               <Text fontSize="17">Health Tips</Text>
             </Box>
           </Link>
-          <Link to="/Business">
+          <Link to="/Business" onClick={handleSideBarView}>
             <Box
               display="flex"
               width="100%"

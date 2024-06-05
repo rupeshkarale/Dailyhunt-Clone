@@ -143,7 +143,7 @@ const News = ({
           <AccordionItem paddingTop="3" pb="3">
             {/* <h2> */}
             <AccordionButton
-              textColor="whatsapp.100"
+              textColor="whatsapp.300"
               width={["37%", "28%"]}
               m="auto"
               bg="rgb(31, 158, 225)"
