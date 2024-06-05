@@ -56,8 +56,17 @@ const Manynews = () => {
       p={"4"}
     >
       {data.length == 0 ? (
-        <Heading color="gray.500" ml="10%" mt="10%">
-          Opps! No Result Found
+        <Heading
+          border="2px solid gray"
+          p="5rem 5rem"
+          color={"gray"}
+          mt="5%"
+          fontFamily="fantasy"
+          fontStyle={"oblique"}
+          fontWeight="hairline"
+          rounded={"3xl"}
+        >
+          No saved news yet
         </Heading>
       ) : (
         data.map((item) => {
