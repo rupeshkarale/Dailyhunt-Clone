@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { add, remove } from "../../redux/action";
 import { Box, Image, Text, Flex, Button } from "@chakra-ui/react";
 import {
@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const News = ({
+  article_id,
   source_id,
   image_url,
   title,
@@ -21,7 +22,38 @@ const News = ({
   content,
   pubDate,
 }) => {
+  const [isSaveNewsPage, setSaveNewsPage] = useState();
+  const savedNews = useSelector((state) => state.data);
+  const [buttonName, setButtonName] = useState("Save");
   const dispach = useDispatch();
+  const { news } = useParams();
+
+  useEffect(() => {
+    if (news === "save") {
+      setSaveNewsPage(true);
+      setButtonName("Removed");
+    } else {
+      setSaveNewsPage(false);
+      if (savedNews.filter((news) => news.article_id === article_id).length) {
+        setButtonName("Saved");
+      }
+    }
+  }, [news]);
+
+  const handleButtonName = () => {
+    const isActionOfSaveNews = !isSaveNewsPage && buttonName === "Save";
+    const isActionOfUnsaveNews = !isSaveNewsPage && buttonName === "Saved";
+    if (isActionOfSaveNews) {
+      dispach(add(payload));
+      setButtonName("Saved");
+    } else if (isActionOfUnsaveNews) {
+      setButtonName("Save");
+      dispach(remove(title));
+    } else if (isSaveNewsPage) {
+      setButtonName("Remove");
+    }
+  };
+
   const payload = {
     source_id,
     image_url,
@@ -29,15 +61,15 @@ const News = ({
     description,
     content,
     pubDate,
+    article_id,
   };
   const addToSave = () => {
-    dispach(add(payload));
+    handleButtonName();
   };
   const removeTo = () => {
     dispach(remove(title));
   };
 
-  let { news } = useParams();
   return (
     <Box
       padding="5"
@@ -54,12 +86,21 @@ const News = ({
           <Button
             onClick={news == "save" ? removeTo : addToSave}
             rightIcon={<StarIcon size="sm" />}
-            colorScheme="blue"
+            colorScheme={buttonName === "Saved" ? "green" : "blue"}
             variant="solid"
             size="xs"
             borderRadius="full"
+            _hover={{
+              backgroundColor:
+                buttonName === "Saved" ? "green.400" : "blue.400",
+              transform: "scale(1.05)",
+            }}
+            _active={{
+              backgroundColor:
+                buttonName === "Saved" ? "green.600" : "blue.600",
+            }}
           >
-            {news == "save" ? "Remove" : "Save"}
+            {buttonName}
           </Button>
         </Box>
         <Image

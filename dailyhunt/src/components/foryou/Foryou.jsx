@@ -22,7 +22,6 @@ const Foryou = () => {
       {data.map((item) => {
         return <News key={item.title} {...item} />;
       })}
-      <News></News>
     </Box>
   );
 };

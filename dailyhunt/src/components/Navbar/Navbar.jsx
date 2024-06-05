@@ -21,6 +21,11 @@ const Navbar = () => {
   function getInput() {
     Navigate(`/@${value.current.value}`);
   }
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      getInput();
+    }
+  };
   return (
     <div className="fix">
       <div className="navbar">
@@ -30,11 +35,13 @@ const Navbar = () => {
           justifyContent={"space-between"}
           ml={["0", "15%"]}
         >
-          <Image
-            src="https://m.dailyhunt.in/assets/img/desktop/logo.svg?mode=pwa&ver=2.0.39"
-            alt=""
-            w={["24", "fit-content"]}
-          />
+          <Link to="/">
+            <Image
+              src="https://m.dailyhunt.in/assets/img/desktop/logo.svg?mode=pwa&ver=2.0.39"
+              alt=""
+              w={["24", "fit-content"]}
+            />
+          </Link>
           <Menu>
             <MenuButton
               bg="rgb(243, 243, 243)rgb(243, 243, 243)"
@@ -77,6 +84,7 @@ const Navbar = () => {
               placeholder={["Search"]}
               ref={value}
               h={["8", ""]}
+              onKeyDown={handleKeyDown}
             />
             <Button
               variant="outline"
