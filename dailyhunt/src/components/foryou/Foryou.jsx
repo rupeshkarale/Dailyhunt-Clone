@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import News from "../news/news";
-import { Box, Skeleton, SkeletonText } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { apikey } from "../apikey";
+import Loading from "../loading/Loading";
 
 const Foryou = () => {
   const [data, setData] = useState([]);
@@ -29,22 +30,7 @@ const Foryou = () => {
       p={"4"}
     >
       {loading ? (
-        <>
-          {[...Array(3)].map((_, index) => (
-            <Box
-              key={index}
-              mb="6"
-              p="4"
-              boxShadow="md"
-              borderRadius="md"
-              bg="white"
-            >
-              <Skeleton height="20px" mb="4" />
-              <SkeletonText mt="4" noOfLines={4} spacing="4" />
-              <Skeleton height="200px" mt="4" />
-            </Box>
-          ))}
-        </>
+        <Loading></Loading>
       ) : (
         data.map((item) => {
           return <News key={item.title} {...item} />;
